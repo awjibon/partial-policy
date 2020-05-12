@@ -18,7 +18,7 @@ Action, A: x+, x-, y+, y-, z+, z-
 
 Reward, R (for taking action a) : +1, if the agent move closer to the target; or -1, if the agent moves farther
 
-Policy, pi(s,a): for a given state s, pi gives the optimal action distribution for all the actions: x+, x-, y+, y-, z+, z-
+Policy, pi(s,a): for a given state s, pi gives the optimal action distribution for all the actions: {x+, x-, y+, y-, z+, z-}
 
 In PPRL, we learn partial policies on the axial projections of the actual action space.
 i.e., we have three partial policies: pi_x, pi_y, pi_z. 
@@ -28,4 +28,11 @@ For example, pi_x: S -> {x+, x-} ; only decides between the two actions along th
 These three partial policies are periodically applied during exploration
 
 ## Implementation summary:
-In this implementation, an agent optimizes 
+In this implementation example, an agent optimizes its partial policies to localize a target in a SINGLE volume, from a FIXED initial point.
+
+Policy optimization technique: Proximal policy optimization (PPO)
+
+Reward itself is used as the advantage. NO CRITIC is used.
+
+
+
