@@ -1,7 +1,7 @@
 # partial-policy
 Partial policy-based reinforcement learning (PPRL) for anatomical landmark localization
 
-Major benefits: 
+## Major benefits: 
 Faster and better learning comparing with the other RL-based localization approaches
 
 This is a simplified implementation example of the following work of ours:
