@@ -40,9 +40,23 @@ Reward itself is used as the advantage. NO CRITIC is used.
 `pprl_simple.py -mode "train" -volume_path "example.mat" -network_path "net/policy_best" -init_pos_center [200, 200, 200]`
 
 **Parameters**
-`-mode: "train"/"test"`
-`-volume_path: "*/*.mat"`: this mat is formatted as follows: {'vol': 3D array, 'gt':[[x,y,z]]}
-`-network_path: "path/to/net"`
+`-mode` : `"train"` / `"test"`
+
+`-volume_path` : `"*/*.mat"`: this mat is formatted as follows: `{'vol': 3D array, 'gt':[[x,y,z]]}`
+
+`-network_path` : `"path/to/net"` : (default) `"net/policy_best"`
+
+`-init_pos_center`: Center of the sample space for the random initial position.
+
+`-init_pos_radii`: Radii of the sample space for the random initial position. (default) `0` for exactly using the center constantly, as the initial position.
+
+`-init_pos_radii_multiplier`: To extend the radii but with stride
+
+
+
+
+
+
 
 
 
