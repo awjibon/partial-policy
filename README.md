@@ -65,7 +65,7 @@ Reward itself is used as the advantage. NO CRITIC is used.
 
 `-max_ppo_epoch`: the `K`-value in PPO. (default: `8`)
 
-# Troubleshooting:
+## Troubleshooting:
 **If the reward does not improve**
 
 - Try a smaller space for the initial position (by reducing `init_pos_radii`). 
