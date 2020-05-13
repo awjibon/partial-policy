@@ -70,7 +70,7 @@ Reward itself is used as the advantage. NO CRITIC is used.
 
 - Try a smaller space for the initial position (by reducing `init_pos_radii`). 
 - Increase `max_episode`, so that agent get more experienes to effectively learn from.
-
+- Increase `max_epoch`.
 - Lower the input volume resolution. ROI size for the state is [32, 32, 32], which may not be large enough for the agent to decide the actions. Lowering the resolution while keeping the state-size same may help in this case. Gradually, train higher resolution agents like in different multi-scale approaches.
 
 
