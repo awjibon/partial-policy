@@ -1,6 +1,6 @@
 # Partial policy-based reinforcement learning (PPRL) for anatomical landmark localization
 
-This is a simplified implementation example of the following work of ours:
+This is a simplified implementation example of the following work:
 
 W. Abdullah Al and I. D. Yun, "Partial Policy-Based Reinforcement Learning for Anatomical Landmark Localization in 3D Medical Images," in IEEE Transactions on Medical Imaging, vol. 39, no. 4, pp. 1245-1255, April 2020, doi: 10.1109/TMI.2019.2946345.
 
@@ -27,13 +27,13 @@ For example, `pi_x: S -> {x+, x-}` ; only decides between the two actions along 
 These three partial policies are periodically applied during exploration
 
 ## Implementation summary:
-In this implementation example, an agent optimizes its partial policies to localize a target in a SINGLE volume, from a FIXED initial point.
+In this implementation example, an agent optimizes its partial policies to localize a target in a SINGLE volume.
 
 Policy optimization technique: Proximal policy optimization (PPO)
 
 Reward itself is used as the advantage. NO CRITIC is used.
 
-## Run the code
+## Running the code
 **Example**
 
 `pprl_simple.py -mode "train" -volume_path "example.mat" -network_path "net/policy_best" -init_pos_center [200, 200, 200]`
@@ -63,13 +63,14 @@ Reward itself is used as the advantage. NO CRITIC is used.
 
 `-batch_size`: batch size for stochastic gradient descent. (default: `20.0`)
 
-`-max_ppo_epoch`: the `K`-value in PPO.
+`-max_ppo_epoch`: the `K`-value in PPO. (default: `8`)
 
-# Other important aspects:
+# Troubleshooting:
 **If the reward does not improve**
-Make sure the `max_step` is enough for the agent to sufficiently converge to the target from the initial positions
 
-ROI size for the state is [32, 32, 32]. You may want to verify if this is large enough context for the agent to decide an action.
+First, try using a fixed initial position `p=[x,y,z]`, by inputting `init_pos_center: p`, and `init_pos_radii: 0`. 
+
+Second, lower the input volume resolution. ROI size for the state is [32, 32, 32], which may not be large enough for the agent to decide the actions. Lowering the resolution while keeping the state-size same may help in this case. Gradually, train higher resolution agents like in different multi-scale approaches.
 
 
 
