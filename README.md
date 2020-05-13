@@ -1,5 +1,4 @@
-# partial-policy
-Partial policy-based reinforcement learning (PPRL) for anatomical landmark localization
+# Partial policy-based reinforcement learning (PPRL) for anatomical landmark localization
 
 This is a simplified implementation example of the following work of ours:
 
@@ -42,17 +41,35 @@ Reward itself is used as the advantage. NO CRITIC is used.
 **Parameters**
 `-mode` : `"train"` / `"test"`
 
-`-volume_path` : `"*/*.mat"`: this mat is formatted as follows: `{'vol': 3D array, 'gt':[[x,y,z]]}`
+`-volume_path` : `"*/*.mat"`: this mat is formatted as follows: `{'vol': 3D array, 'gt':[[x,y,z]]}`. During test, a fake GT can be provided
 
-`-network_path` : `"path/to/net"` : (default) `"net/policy_best"`
+`-network_path` : `"path/to/net"` : (default: `"net/policy_best"`)
 
-`-init_pos_center`: Center of the sample space for the random initial position.
+`-init_pos_center`: Center of the sample space for the random initial position. (default: center of the input volume)
 
-`-init_pos_radii`: Radii of the sample space for the random initial position. (default) `0` for exactly using the center constantly, as the initial position.
+`-init_pos_radii`: Radii of the sample space for the random initial position. (default: `0` for exactly using the center constantly, as the initial position.)
 
-`-init_pos_radii_multiplier`: To extend the radii but with stride
+`-init_pos_radii_multiplier`: To extend the radii but with stride. (default: `1` for o stride)
 
+`-max_episode`: number of episodes to explore at each epoch. (default: `5`)
 
+`-max_step`: maximum number of steps per episode. (default: `30`). Keep in mind, the step-size is `2` in the current code.
+
+`-max_epoch`: total number of epochs for training. (default: `300`
+
+`-epsilon`: initial epsilon value for training. (default: `0.1`). epsilon value is increased over the epochs at a rate of `1/max_epoch`. The higher the `epsilon` value, the greedier the policy.
+
+`-alpha`: learning rate. (default: `1e-6`)
+
+`-batch_size`: batch size for stochastic gradient descent. (default: `20.0`)
+
+`-max_ppo_epoch`: the `K`-value in PPO.
+
+# Other important aspects:
+**If the reward does not improve**
+Make sure the `max_step` is enough for the agent to sufficiently converge to the target from the initial positions
+
+ROI size for the state is [32, 32, 32]. You may want to verify if this is large enough context for the agent to decide an action.
 
 
 
