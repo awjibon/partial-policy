@@ -68,9 +68,10 @@ Reward itself is used as the advantage. NO CRITIC is used.
 # Troubleshooting:
 **If the reward does not improve**
 
-First, try using a fixed initial position `p=[x,y,z]`, by inputting `init_pos_center: p`, and `init_pos_radii: 0`. 
+- Try a smaller space for the initial position (by reducing `init_pos_radii`). 
+- Increase `max_episode`, so that agent get more experienes to effectively learn from.
 
-Second, lower the input volume resolution. ROI size for the state is [32, 32, 32], which may not be large enough for the agent to decide the actions. Lowering the resolution while keeping the state-size same may help in this case. Gradually, train higher resolution agents like in different multi-scale approaches.
+- Lower the input volume resolution. ROI size for the state is [32, 32, 32], which may not be large enough for the agent to decide the actions. Lowering the resolution while keeping the state-size same may help in this case. Gradually, train higher resolution agents like in different multi-scale approaches.
 
 
 
