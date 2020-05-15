@@ -33,6 +33,8 @@ Policy optimization technique: Proximal policy optimization (PPO)
 
 Reward itself is used as the advantage. NO CRITIC is used.
 
+And, a reward of convergence (`+2`) is added for the agent positions within a radius of 4 voxels
+
 ## Running the code
 **Example**
 
@@ -47,7 +49,7 @@ Reward itself is used as the advantage. NO CRITIC is used.
 
 `-init_pos_center`: Center of the sample space for the random initial position. (default: center of the input volume)
 
-`-init_pos_radii`: Radii of the sample space for the random initial position. (default: `0` for exactly using the center constantly, as the initial position.)
+`-init_pos_radii`: Radii of the sample space for the random initial position. (default: `5`). Use `0`, for exactly using the center constantly, as the initial position.
 
 `-init_pos_radii_multiplier`: To extend the radii but with stride. (default: `1` for o stride)
 
@@ -57,13 +59,13 @@ Reward itself is used as the advantage. NO CRITIC is used.
 
 `-max_epoch`: total number of epochs for training. (default: `300`
 
-`-epsilon`: initial epsilon value for training. (default: `0.1`). epsilon value is increased over the epochs at a rate of `1/max_epoch`. The higher the `epsilon` value, the greedier the policy.
+`-epsilon`: initial epsilon value for training. (default: `0.7`). epsilon value is increased over the epochs at a rate of `1/max_epoch`. The higher the `epsilon` value, the greedier the policy.
 
 `-alpha`: learning rate. (default: `1e-6`)
 
 `-batch_size`: batch size for stochastic gradient descent. (default: `20.0`)
 
-`-max_ppo_epoch`: the `K`-value in PPO. (default: `8`)
+`-max_ppo_epoch`: the `K`-value in PPO. (default: `2`)
 
 ## Troubleshooting:
 **If the reward does not improve**
