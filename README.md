@@ -13,21 +13,21 @@ An agent initialized at a random point inside a 3D medical image, moves to a nei
 
 State, `S`: ROI centered at the current point
 
-Action, `A: x+, x-, y+, y-, z+, z-`
+Action, `A`: `{x+, x-, y+, y-, z+, z-}`
 
-Reward, `R` (for taking action `a`) : `+1`, if the agent move closer to the target; or `-1`, if the agent moves farther
+Reward, `R` (for taking action `a`) : `+1`, if the agent moves closer to the target; or `-1`, if the agent moves farther
 
 Policy, `pi(s,a)`: for a given state `s`, `pi` gives the optimal action distribution for all the actions: `{x+, x-, y+, y-, z+, z-}`
 
 In PPRL, we learn partial policies on the axial projections of the actual action space.
 i.e., we have three partial policies: `pi_x`, `pi_y`, `pi_z`. 
 
-For example, `pi_x: S -> {x+, x-}` ; only decides between the two actions along the X-axis. 
+For example, `pi_x: S -> {x+, x-}` ; only decides between the two actions along X-axis. 
 
-These three partial policies are periodically applied during exploration
+These three partial policies are periodically applied during exploration.
 
 ## Implementation summary:
-In this implementation example, an agent optimizes its partial policies to localize a target in a SINGLE volume.
+In this implementation example, an agent optimizes its partial policies to localize a target in a **SINGLE** 3D volume.
 
 Policy optimization technique: Proximal policy optimization (PPO)
 
@@ -51,13 +51,13 @@ And, a reward of convergence (`+2`) is added for the agent positions within a ra
 
 `-init_pos_radii`: Radii of the sample space for the random initial position. (default: `5`). Use `0`, for exactly using the center constantly, as the initial position.
 
-`-init_pos_radii_multiplier`: To extend the radii but with stride. (default: `1` for o stride)
+`-init_pos_radii_multiplier`: To extend the radii but with stride. (default: `1` for zero stride)
 
 `-max_episode`: number of episodes to explore at each epoch. (default: `5`)
 
 `-max_step`: maximum number of steps per episode. (default: `30`). Keep in mind, the step-size is `2` in the current code.
 
-`-max_epoch`: total number of epochs for training. (default: `300`
+`-max_epoch`: total number of epochs for training. (default: `300`)
 
 `-epsilon`: initial epsilon value for training. (default: `0.7`). epsilon value is increased over the epochs at a rate of `1/max_epoch`. The higher the `epsilon` value, the greedier the policy.
 
