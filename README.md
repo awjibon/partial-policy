@@ -35,10 +35,12 @@ Reward itself is used as the advantage. NO CRITIC is used.
 
 And, a reward of convergence (`+2`) is added for the agent positions within a radius of 4 voxels
 
-## Running the code
+## Usage
 **Example**
 
 `pprl_simple.py -mode "train" -volume_path "example.mat" -network_path "net/policy_best" -init_pos_center [200, 200, 200]`
+
+`pprl_cumulative.py` can also be run similarly. `pprl_cumulative.py` uses cumulative episodic return in the objective instead of instant reward as in `pprl_simple.py`
 
 **Parameters**
 `-mode` : `"train"` / `"test"`
